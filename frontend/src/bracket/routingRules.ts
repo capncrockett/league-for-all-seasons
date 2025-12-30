@@ -63,9 +63,9 @@ export const ROUTING_RULES: BracketRoutingRule[] = [
   },
  
   //
-  // MIDLING BRACKET (keeper)
+  // MIDLING BOWL
   //
-  // Splashbacks -> 5th/6th and 7th/8th
+  // Middling semis -> 5th/6th and 7th/8th
   {
     fromSlotId: 'keeper_splashback1',
     winnerGoesTo: { slotId: 'keeper_5th_6th', positionIndex: 0 },

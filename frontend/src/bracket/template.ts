@@ -59,8 +59,8 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     id: 'keeper_floater1',
     bracketId: 'keeper',
     round: 'keeper_main',
-    label: 'Floater 1 (Champ loser top)',
-    positions: [null, null], // Champ Round 1 loser drops here (routed into Splashback 1)
+    label: 'Middling info (reserved)',
+    positions: [null, null],
   },
   {
     id: 'keeper_splashback1',
@@ -74,8 +74,8 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     id: 'keeper_floater2',
     bracketId: 'keeper',
     round: 'keeper_main',
-    label: 'Floater 2 (Champ loser bottom)',
-    positions: [null, null], // Reserved for future use / visual helpers
+    label: 'Middling info (reserved)',
+    positions: [null, null],
   },
   {
     id: 'keeper_splashback2',
