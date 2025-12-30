@@ -291,6 +291,16 @@ npm run lint
 
 See `TESTING.md` in the root directory for detailed testing strategy.
 
+## Deployments (Vercel)
+
+- Frontend is deployed via Vercel project `league-for-all-seasons` (linked from the `frontend/` directory using `vercel link`).
+- Vercel auto-detects this app as a **Vite** project:
+  - Build command: `vite build` (equivalent to `npm run build`).
+  - Output directory: `dist`.
+- Typical workflow:
+  - Pushes to long-lived branches (e.g. `main`, `release/*`) trigger branch deployments.
+  - PRs from short-lived branches (e.g. `chore/vercel-pr-test`) into `main` should produce Vercel Preview deployments.
+
 ## Important Notes
 
 - **League ID:** Hardcoded in pages (look for `LEAGUE_ID` constants). Consider moving to environment variables for multi-league support.
