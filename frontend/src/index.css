@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+/* Basic global styles */
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  min-height: 100vh;
+}
+
+/* DaisyUI theme configuration for Tailwind 4 */
+@plugin "daisyui" {
+  themes: cupcake, retro, dim, dracula --prefersdark;
+}
+
+@layer components {
+  /* Force long team names to ellipsis within available card width */
+  .bracket-team-name {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  /* Extra tightening for very small widths (e.g., 375px devices) */
+  @media (max-width: 420px) {
+    .bracket-team-name {
+      font-size: 0.6rem;
+    }
+
+    .bracket-score {
+      font-size: 0.65rem;
+    }
+  }
+}
