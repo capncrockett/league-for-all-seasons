@@ -33,21 +33,13 @@ const KEEPER_COLUMNS: BracketLayoutColumn[] = [
         id: 'keeper_round1_matchup1',
         slotId: null,
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
-        ghostContent: (
-          <>
-            {renderKeeperInfoRow('Seeds: Middling Semi 1 (Champ L 3/6 vs 7) → card to the right')}
-          </>
-        ),
+        ghostContent: <>{renderKeeperInfoRow('Seeds: Middling Semi 1 (Champ L 3/6 vs 7) →')}</>,
       },
       {
         id: 'keeper_round1_matchup2',
         slotId: null,
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
-        ghostContent: (
-          <>
-            {renderKeeperInfoRow('Seeds: Middling Semi 2 (Champ L 4/5 vs 8) → card to the right')}
-          </>
-        ),
+        ghostContent: <>{renderKeeperInfoRow('Seeds: Middling Semi 2 (Champ L 4/5 vs 8) →')}</>,
       },
       {
         id: 'keeper_round1_spacer',

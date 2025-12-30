@@ -32,21 +32,13 @@ const TOILET_COLUMNS: BracketLayoutColumn[] = [
         id: 'toilet_round1_info1',
         slotId: null,
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
-        ghostContent: (
-          <>
-            {renderToiletInfoRow('Seeds: Toilet Semi 1 (9 vs 12) → card to the right')}
-          </>
-        ),
+        ghostContent: <>{renderToiletInfoRow('Seeds: Toilet Semi 1 (9 vs 12) →')}</>,
       },
       {
         id: 'toilet_round1_info2',
         slotId: null,
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
-        ghostContent: (
-          <>
-            {renderToiletInfoRow('Seeds: Toilet Semi 2 (10 vs 11) → card to the right')}
-          </>
-        ),
+        ghostContent: <>{renderToiletInfoRow('Seeds: Toilet Semi 2 (10 vs 11) →')}</>,
       },
       {
         id: 'toilet_round1_spacer',
