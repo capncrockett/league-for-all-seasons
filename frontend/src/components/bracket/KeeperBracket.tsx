@@ -35,8 +35,7 @@ const KEEPER_COLUMNS: BracketLayoutColumn[] = [
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
         ghostContent: (
           <>
-            {renderKeeperInfoRow('Semi 1: Champ L (3/6) vs 7')}
-            {renderKeeperInfoRow('Path: 5–8 & picks 1.05–1.08')}
+            {renderKeeperInfoRow('Seeds: Middling Semi 1 (Champ L 3/6 vs 7) → card to the right')}
           </>
         ),
       },
@@ -46,8 +45,7 @@ const KEEPER_COLUMNS: BracketLayoutColumn[] = [
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
         ghostContent: (
           <>
-            {renderKeeperInfoRow('Semi 2: Champ L (4/5) vs 8')}
-            {renderKeeperInfoRow('Same: 5–8 & picks 1.05–1.08')}
+            {renderKeeperInfoRow('Seeds: Middling Semi 2 (Champ L 4/5 vs 8) → card to the right')}
           </>
         ),
       },

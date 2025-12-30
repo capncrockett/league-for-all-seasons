@@ -34,8 +34,7 @@ const TOILET_COLUMNS: BracketLayoutColumn[] = [
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
         ghostContent: (
           <>
-            {renderToiletInfoRow('Semi 1: Seed 9 vs 12')}
-            {renderToiletInfoRow('Semi 2: Seed 10 vs 11')}
+            {renderToiletInfoRow('Seeds: Toilet Semi 1 (9 vs 12) → card to the right')}
           </>
         ),
       },
@@ -45,8 +44,7 @@ const TOILET_COLUMNS: BracketLayoutColumn[] = [
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
         ghostContent: (
           <>
-            {renderToiletInfoRow('Winner bracket: 9th & 10th finishers')}
-            {renderToiletInfoRow('Loser bracket: 11th & 12th finishers')}
+            {renderToiletInfoRow('Seeds: Toilet Semi 2 (10 vs 11) → card to the right')}
           </>
         ),
       },
