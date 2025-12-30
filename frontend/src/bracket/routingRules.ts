@@ -19,14 +19,14 @@ export const ROUTING_RULES: BracketRoutingRule[] = [
     // Winner plays in Champ R2 G1 (vs seed 1) as the bottom slot
     winnerGoesTo: { slotId: 'champ_r2_g1', positionIndex: 1 },
     // Loser drops into Middling Semi 1 (vs seed 7)
-    loserGoesTo: { slotId: 'keeper_splashback1', positionIndex: 0 },
+    loserGoesTo: { slotId: 'keeper_m1', positionIndex: 0 },
   },
   {
     fromSlotId: 'champ_r1_g2',
     // Winner plays in Champ R2 G2 (vs seed 2) as the bottom slot
     winnerGoesTo: { slotId: 'champ_r2_g2', positionIndex: 1 },
     // Loser drops into Middling Semi 2 (vs seed 8)
-    loserGoesTo: { slotId: 'keeper_splashback2', positionIndex: 0 },
+    loserGoesTo: { slotId: 'keeper_m2', positionIndex: 0 },
   },
 
   // Round 2 -> Finals + 3rd place
@@ -67,12 +67,12 @@ export const ROUTING_RULES: BracketRoutingRule[] = [
   //
   // Middling semis -> 5th/6th and 7th/8th
   {
-    fromSlotId: 'keeper_splashback1',
+    fromSlotId: 'keeper_m1',
     winnerGoesTo: { slotId: 'keeper_5th_6th', positionIndex: 0 },
     loserGoesTo: { slotId: 'keeper_7th_8th', positionIndex: 0 },
   },
   {
-    fromSlotId: 'keeper_splashback2',
+    fromSlotId: 'keeper_m2',
     winnerGoesTo: { slotId: 'keeper_5th_6th', positionIndex: 1 },
     loserGoesTo: { slotId: 'keeper_7th_8th', positionIndex: 1 },
   },

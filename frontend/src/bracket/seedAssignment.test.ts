@@ -59,16 +59,16 @@ describe('seedAssignment', () => {
       expect(toiletSemi2.positions[1]?.teamId).toBe(11);
     });
 
-    it('preserves BYE positions without team IDs', () => {
+    it('preserves BYE/info positions without team IDs', () => {
       const slots = assignSeedsToBracketSlots(mockTeams);
 
-      // Keeper bowl floaters start empty (fed by champ losers)
-      const keeperFloater1 = slots.find((s) => s.id === 'keeper_floater1');
-      expect(keeperFloater1).toBeDefined();
-      if (!keeperFloater1) {
-        throw new Error('Expected keeper_floater1 slot to be defined');
+      // Middling info cards start empty
+      const keeperInfo1 = slots.find((s) => s.id === 'keeper_info1');
+      expect(keeperInfo1).toBeDefined();
+      if (!keeperInfo1) {
+        throw new Error('Expected keeper_info1 slot to be defined');
       }
-      expect(keeperFloater1.positions[0]?.teamId).toBeUndefined();
+      expect(keeperInfo1.positions[0]?.teamId).toBeUndefined();
     });
 
     it('does not mutate original template', () => {

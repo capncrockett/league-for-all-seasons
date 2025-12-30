@@ -56,14 +56,14 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
   // KEEPER BOWL
   //
   {
-    id: 'keeper_floater1',
+    id: 'keeper_info1',
     bracketId: 'keeper',
     round: 'keeper_main',
     label: 'Middling info (reserved)',
     positions: [null, null],
   },
   {
-    id: 'keeper_splashback1',
+    id: 'keeper_m1',
     bracketId: 'keeper',
     round: 'keeper_main',
     label: 'Middling Semi 1 (Champ R1 loser vs 7)',
@@ -71,14 +71,14 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     positions: [null, { seed: 7 }],
   },
   {
-    id: 'keeper_floater2',
+    id: 'keeper_info2',
     bracketId: 'keeper',
     round: 'keeper_main',
     label: 'Middling info (reserved)',
     positions: [null, null],
   },
   {
-    id: 'keeper_splashback2',
+    id: 'keeper_m2',
     bracketId: 'keeper',
     round: 'keeper_main',
     label: 'Middling Semi 2 (Champ R1 loser vs 8)',

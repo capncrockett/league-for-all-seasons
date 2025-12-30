@@ -72,13 +72,13 @@ const SLOT_TITLES: Partial<Record<BracketSlot['id'], ReactNode>> = {
   champ_r1_g1: 'Game 1',
   champ_r1_g2: 'Game 2',
   // Middling Bowl semis
-  keeper_splashback1: (
+  keeper_m1: (
     <span>
       <span className="md:hidden">Semis</span>
       <span className="hidden md:inline">Middling Semis</span>
     </span>
   ),
-  keeper_splashback2: (
+  keeper_m2: (
     <span>
       <span className="md:hidden">Semis</span>
       <span className="hidden md:inline">Middling Semis</span>

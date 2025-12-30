@@ -10,11 +10,11 @@ export type BracketSlotId =
   | 'champ_r2_g2'
   | 'champ_finals'
   | 'champ_3rd'
-  // Keeper
-  | 'keeper_floater1'
-  | 'keeper_floater2'
-  | 'keeper_splashback1'
-  | 'keeper_splashback2'
+  // Middling (keeper group)
+  | 'keeper_info1'
+  | 'keeper_info2'
+  | 'keeper_m1'
+  | 'keeper_m2'
   | 'keeper_5th_6th'
   | 'keeper_7th_8th'
   // Toilet
@@ -54,7 +54,7 @@ export interface BracketSlot {
   id: BracketSlotId;
   bracketId: BracketId;
   round: BracketRound;
-  /** Human-readable label: "Champ R1 G1 (4 vs 5)", "Floater 1", etc. */
+/** Human-readable label: "Champ R1 G1 (4 vs 5)", "Middling Semi 1", etc. */
   label: string;
   /** Two sides of the matchup: top/left and bottom/right. */
   positions: [BracketTeamRef | null, BracketTeamRef | null];

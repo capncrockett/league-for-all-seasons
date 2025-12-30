@@ -42,7 +42,7 @@ const ROUND_2_SLOT_IDS: BracketSlotId[] = [
   'toilet_r2_g2',
 ];
 
-const KEEPER_ROUND_2_SLOT_IDS: BracketSlotId[] = ['keeper_splashback1', 'keeper_splashback2'];
+const KEEPER_ROUND_2_SLOT_IDS: BracketSlotId[] = ['keeper_m1', 'keeper_m2'];
 
 type BracketMode = 'score' | 'reward';
 

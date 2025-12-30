@@ -52,8 +52,8 @@ const KEEPER_COLUMNS: BracketLayoutColumn[] = [
     subtitle: 'Week 16',
     itemsContainerClassName: 'justify-between',
     items: [
-      { id: 'keeper_splashback1', slotId: 'keeper_splashback1' },
-      { id: 'keeper_splashback2', slotId: 'keeper_splashback2' },
+      { id: 'keeper_m1', slotId: 'keeper_m1' },
+      { id: 'keeper_m2', slotId: 'keeper_m2' },
       {
         id: 'keeper_round2_spacer',
         slotId: null,
