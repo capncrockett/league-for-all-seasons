@@ -20,7 +20,7 @@ test.describe('Happy path smoke', () => {
     await expect(page).toHaveURL(/\/playoffs\/live/);
     await expect(page.getByRole('heading', { name: /live playoffs/i })).toBeVisible();
     await expect(page.getByRole('banner')).toBeVisible();
-    await expect(page.getByRole('contentinfo')).toContainText(/keeper bowl playoffs/i);
+    await expect(page.getByRole('contentinfo')).toContainText(/league for all seasons playoffs/i);
   });
 
   routes.forEach(({ path, heading }) => {
@@ -48,7 +48,7 @@ test.describe('Happy path smoke', () => {
 
     await page.goto('/');
 
-    await expect(page.getByText(/KB Playoffs/i)).toBeVisible();
+    await expect(page.getByText(/LFAS Playoffs/i)).toBeVisible();
     await expect(page.locator('nav a')).toHaveCount(4);
   });
 

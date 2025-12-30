@@ -1,4 +1,4 @@
-# Keeper Bowl Playoffs — Roadmap (Active)
+# League For All Seasons Playoffs — Roadmap (Active)
 
 Completed phases 0–6 removed for brevity; reopen if you need historical notes.
 

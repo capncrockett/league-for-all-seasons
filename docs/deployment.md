@@ -22,7 +22,7 @@ Why Vercel
 
 Current Deployment
 
-- Repository: Connected to GitHub (`capncrockett/keeper-bowl-playoffs`)
+- Repository: Connected to GitHub (`capncrockett/league-for-all-seasons`)
 - Branch: `main` auto-deploys
 - Build command: Auto-detected (runs from `frontend` directory)
 - Output directory: `frontend/dist`
@@ -71,7 +71,7 @@ Optional GitHub Actions (future)
 - [ ] Test all routes on production URL
 - [ ] Verify ESPN API calls work from deployed environment
 - [ ] Share production URL with league members
-- [ ] Optional: Add custom domain (e.g., `keeper-bowl.com`)
+- [ ] Optional: Add custom domain for the league site (e.g., `lfas.example.com`)
 - [ ] Optional: Create GitHub Action for additional CI checks
 
 ## Common Issues

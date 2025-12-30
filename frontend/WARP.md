@@ -4,7 +4,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 ## Project Overview
 
-Playoff bracket visualization UI for a Sleeper fantasy football keeper league. The app visualizes three interrelated brackets (Champ Bowl, Keeper Bowl, Toilet Bowl) with custom routing rules where losers from Champ Bowl flow into Keeper Bowl, and winners from Toilet Bowl feed into Keeper Bowl.
+Playoff bracket visualization UI for a Sleeper fantasy football dynasty league. The app visualizes three interrelated brackets (Championship, Dynasty, and Toilet brackets) with custom routing rules where losers from the Championship bracket flow into the Dynasty bracket, and winners from the Toilet bracket feed into the Dynasty bracket.
 
 **Current State:** Fully functional React SPA with both "If Today" preview mode and Live playoffs mode. Features responsive design with mobile-optimized layouts. Direct calls to Sleeper public APIs. Backend proxy may be added later (caching/rate-limiting).
 

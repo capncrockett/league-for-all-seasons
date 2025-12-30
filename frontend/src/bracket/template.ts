@@ -89,7 +89,7 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     round: 'keeper_misc',
     label: '5th / 6th Game',
     positions: [null, null],
-    rewardTitle: 'Keeper Bowl Champ',
+    rewardTitle: 'Dynasty Champ',
     rewardText: 'W = 5th (+1 keeper next season) | L = 6th',
   },
   {
