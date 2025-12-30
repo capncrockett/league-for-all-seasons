@@ -14,37 +14,59 @@ interface ToiletBracketProps {
   mode: 'score' | 'reward';
 }
 
+const renderToiletInfoRow = (label: string) => (
+  <div className="flex-1 max-w-full overflow-hidden min-w-0 flex items-center justify-center">
+    <div className="text-[0.65rem] md:text-sm font-semibold text-base-content/90 leading-tight text-center">
+      {label}
+    </div>
+  </div>
+);
+
 const TOILET_COLUMNS: BracketLayoutColumn[] = [
   {
     title: 'Round 1',
-    subtitle: 'Week 15',
+    subtitle: 'Seeding',
     itemsContainerClassName: 'justify-between',
     items: [
       {
-        id: 'toilet_bye1',
-        slotId: 'toilet_r2_g1',
-        maskOppIndex: 1,
-        titleOverride: 'BYE',
-        connectorToSlotId: 'toilet_r2_g1',
+        id: 'toilet_round1_info1',
+        slotId: null,
+        ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
+        ghostContent: (
+          <>
+            {renderToiletInfoRow('Semi 1: Seed 9 vs 12')}
+            {renderToiletInfoRow('Semi 2: Seed 10 vs 11')}
+          </>
+        ),
       },
-      { id: 'toilet_r1_g1', slotId: 'toilet_r1_g1', connectorToSlotId: 'toilet_r2_g1' },
       {
-        id: 'toilet_bye2',
-        slotId: 'toilet_r2_g2',
-        maskOppIndex: 1,
-        titleOverride: 'BYE',
-        connectorToSlotId: 'toilet_r2_g2',
+        id: 'toilet_round1_info2',
+        slotId: null,
+        ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
+        ghostContent: (
+          <>
+            {renderToiletInfoRow('Winner bracket: 9th & 10th finishers')}
+            {renderToiletInfoRow('Loser bracket: 11th & 12th finishers')}
+          </>
+        ),
       },
-      { id: 'toilet_r1_g2', slotId: 'toilet_r1_g2', connectorToSlotId: 'toilet_r2_g2' },
+      {
+        id: 'toilet_round1_spacer',
+        slotId: null,
+      },
     ],
   },
   {
     title: 'Round 2',
     subtitle: 'Week 16',
-    itemsContainerClassName: 'justify-around',
+    itemsContainerClassName: 'justify-between',
     items: [
       { id: 'toilet_r2_g1', slotId: 'toilet_r2_g1' },
       { id: 'toilet_r2_g2', slotId: 'toilet_r2_g2' },
+      {
+        id: 'toilet_round2_spacer',
+        slotId: null,
+      },
     ],
   },
   {
@@ -53,10 +75,16 @@ const TOILET_COLUMNS: BracketLayoutColumn[] = [
     itemsContainerClassName: 'justify-between',
     items: [
       {
-        id: 'toilet_finals_spacer',
+        id: 'toilet_finals_spacer_top',
         slotId: null,
+        ghostBodyClassName: 'h-[65px] md:h-[75px]',
       },
       { id: 'toilet_finals', slotId: 'toilet_finals' },
+      {
+        id: 'toilet_finals_spacer',
+        slotId: null,
+        ghostBodyClassName: 'h-[85px] md:h-[100px]',
+      },
       { id: 'toilet_9th_10th', slotId: 'toilet_9th_10th' },
     ],
   },

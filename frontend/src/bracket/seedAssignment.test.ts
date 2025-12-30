@@ -35,18 +35,28 @@ describe('seedAssignment', () => {
       expect(champR2Top.positions[0]?.teamId).toBe(1); // roster_id 1
     });
 
-    it('assigns toilet bowl seeds 7-12', () => {
+    it('assigns toilet bowl seeds 9-12 to semifinals', () => {
       const slots = assignSeedsToBracketSlots(mockTeams);
 
-      const toiletR1Top = slots.find((s) => s.id === 'toilet_r1_g1');
-      expect(toiletR1Top).toBeDefined();
-      if (!toiletR1Top) {
-        throw new Error('Expected toilet_r1_g1 slot to be defined');
+      const toiletSemi1 = slots.find((s) => s.id === 'toilet_r2_g1');
+      expect(toiletSemi1).toBeDefined();
+      if (!toiletSemi1) {
+        throw new Error('Expected toilet_r2_g1 slot to be defined');
       }
-      expect(toiletR1Top.positions[0]?.seed).toBe(8);
-      expect(toiletR1Top.positions[0]?.teamId).toBe(8);
-      expect(toiletR1Top.positions[1]?.seed).toBe(9);
-      expect(toiletR1Top.positions[1]?.teamId).toBe(9);
+      expect(toiletSemi1.positions[0]?.seed).toBe(9);
+      expect(toiletSemi1.positions[0]?.teamId).toBe(9);
+      expect(toiletSemi1.positions[1]?.seed).toBe(12);
+      expect(toiletSemi1.positions[1]?.teamId).toBe(12);
+
+      const toiletSemi2 = slots.find((s) => s.id === 'toilet_r2_g2');
+      expect(toiletSemi2).toBeDefined();
+      if (!toiletSemi2) {
+        throw new Error('Expected toilet_r2_g2 slot to be defined');
+      }
+      expect(toiletSemi2.positions[0]?.seed).toBe(10);
+      expect(toiletSemi2.positions[0]?.teamId).toBe(10);
+      expect(toiletSemi2.positions[1]?.seed).toBe(11);
+      expect(toiletSemi2.positions[1]?.teamId).toBe(11);
     });
 
     it('preserves BYE positions without team IDs', () => {

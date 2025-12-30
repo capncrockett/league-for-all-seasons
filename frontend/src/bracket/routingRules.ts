@@ -13,19 +13,19 @@ export const ROUTING_RULES: BracketRoutingRule[] = [
   // CHAMP BOWL
   //
 
-  // Round 1 -> Round 2 + Keeper
+  // Round 1 -> Round 2 + Middling bracket (dynasty)
   {
     fromSlotId: 'champ_r1_g1',
     // Winner plays in Champ R2 G1 (vs seed 1) as the bottom slot
     winnerGoesTo: { slotId: 'champ_r2_g1', positionIndex: 1 },
-    // Loser drops into Keeper Splashback 1 (as the Floater side)
+    // Loser drops into Middling Semi 1 (vs seed 7)
     loserGoesTo: { slotId: 'keeper_splashback1', positionIndex: 0 },
   },
   {
     fromSlotId: 'champ_r1_g2',
     // Winner plays in Champ R2 G2 (vs seed 2) as the bottom slot
     winnerGoesTo: { slotId: 'champ_r2_g2', positionIndex: 1 },
-    // Loser drops into Keeper Splashback 2 (as the Floater side)
+    // Loser drops into Middling Semi 2 (vs seed 8)
     loserGoesTo: { slotId: 'keeper_splashback2', positionIndex: 0 },
   },
 
@@ -46,29 +46,14 @@ export const ROUTING_RULES: BracketRoutingRule[] = [
   },
 
   //
-  // TOILET BOWL
+  // TOILET BOWL (dynasty lottery bracket)
   //
-
-  // Round 1 -> Round 2 + Keeper
-  // Winners jump up into Keeper Splashback; losers slide to face the bye seeds
-  {
-    fromSlotId: 'toilet_r1_g1',
-    winnerGoesTo: { slotId: 'keeper_splashback1', positionIndex: 1 },
-    loserGoesTo: { slotId: 'toilet_r2_g1', positionIndex: 1 },
-  },
-  // R1 G2 mirrors top side
-  {
-    fromSlotId: 'toilet_r1_g2',
-    winnerGoesTo: { slotId: 'keeper_splashback2', positionIndex: 1 },
-    loserGoesTo: { slotId: 'toilet_r2_g2', positionIndex: 1 },
-  },
-
-  // Round 2 -> Poop King final + 9th/10th game
+  // Semifinals (9 vs 12, 10 vs 11) -> Final + Consolation
   {
     fromSlotId: 'toilet_r2_g1',
-    // Winners move to Poop King final
+    // Winners move to Toilet Final (9th/10th)
     winnerGoesTo: { slotId: 'toilet_finals', positionIndex: 0 },
-    // Losers play in 9th/10th game
+    // Losers play in 11th/12th game
     loserGoesTo: { slotId: 'toilet_9th_10th', positionIndex: 0 },
   },
   {
@@ -76,11 +61,11 @@ export const ROUTING_RULES: BracketRoutingRule[] = [
     winnerGoesTo: { slotId: 'toilet_finals', positionIndex: 1 },
     loserGoesTo: { slotId: 'toilet_9th_10th', positionIndex: 1 },
   },
-
+ 
   //
-  // KEEPER BOWL
+  // MIDLING BRACKET (keeper)
   //
-  // Splashback -> 5th/6th
+  // Splashbacks -> 5th/6th and 7th/8th
   {
     fromSlotId: 'keeper_splashback1',
     winnerGoesTo: { slotId: 'keeper_5th_6th', positionIndex: 0 },
