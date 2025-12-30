@@ -94,7 +94,7 @@ const ROUND_TITLES_DESKTOP: Partial<Record<BracketSlot['round'], string>> = {
   champ_round_2: 'Champ Semis',
   champ_finals: 'Championship',
   // Let 3rd place games use their labels (e.g., "3rd Place Game")
-  keeper_main: 'Dynasty Bracket',
+  keeper_main: 'Middling Bowl',
   // Let keeper placement games use their labels (5th/6th, 7th/8th)
   toilet_round_1: 'Toilet Round 1',
   toilet_round_2: 'Toilet Semis',
@@ -110,7 +110,7 @@ const ROUND_TITLES_MOBILE: Partial<Record<BracketSlot['round'], string>> = {
 };
 
 const REWARD_TITLE_MOBILE_OVERRIDES: Partial<Record<BracketSlot['id'], string>> = {
-  keeper_5th_6th: 'Dynasty Champ',
+  keeper_5th_6th: 'Middling Champ',
 };
 
 const TEAM_NAME_CLASS = 'bracket-team-name font-semibold text-[0.65rem] md:text-sm leading-tight';

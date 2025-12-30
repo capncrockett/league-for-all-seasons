@@ -105,7 +105,7 @@ export const ToiletBracket: FC<ToiletBracketProps> = ({
       scoreOverridesByTeamId={byeWeekPointsByTeamId}
       highlightTeamId={highlightTeamId}
       mode={mode}
-      columnHeightClass="min-h-[600px] md:min-h-[760px]"
+      columnHeightClass="min-h-[300px] md:min-h-[360px]"
     />
   );
 };
