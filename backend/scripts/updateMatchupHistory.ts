@@ -13,7 +13,7 @@ import {
 } from '../matchupHistoryStore';
 import type { StoredMatchup } from '../../frontend/src/data/matchupHistoryTypes';
 
-const DEFAULT_LEAGUE_ID = '1251950356187840512';
+const DEFAULT_LEAGUE_ID = '1225292474453336064';
 
 type CliOptions = {
   weeks: number[];
