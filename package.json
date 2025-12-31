@@ -1,5 +1,5 @@
 {
-  "name": "keeper-bowl-playoffs",
+  "name": "league-for-all-seasons",
   "private": true,
   "workspaces": ["frontend", "backend"],
   "scripts": {

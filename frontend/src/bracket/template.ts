@@ -39,8 +39,8 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     round: 'champ_finals',
     label: 'Championship',
     positions: [null, null],
-    rewardTitle: 'Grundle Champ',
-    rewardText: 'W = 1st ( BELT + 👑 + 💰) | L = 2nd (2x buy-in)',
+    rewardTitle: 'League Champion',
+    rewardText: 'W = 1st (title + top payout, pick 1.12) | L = 2nd (payout, pick 1.11)',
   },
   {
     id: 'champ_3rd',
@@ -49,39 +49,41 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     label: '3rd Place Game',
     positions: [null, null],
     rewardTitle: '3rd / 4th',
-    rewardText: 'W = 3rd (1x buy-in) | L = 4th',
+    rewardText: 'W = 3rd (pick 1.10) | L = 4th (pick 1.09)',
   },
 
   //
   // KEEPER BOWL
   //
   {
-    id: 'keeper_floater1',
+    id: 'keeper_info1',
     bracketId: 'keeper',
     round: 'keeper_main',
-    label: 'Floater 1 (Champ loser top)',
-    positions: [null, null], // Champ Round 1 loser drops here (routed into Splashback 1)
-  },
-  {
-    id: 'keeper_splashback1',
-    bracketId: 'keeper',
-    round: 'keeper_main',
-    label: 'Splash Back 1',
+    label: 'Middling info (reserved)',
     positions: [null, null],
   },
   {
-    id: 'keeper_floater2',
+    id: 'keeper_m1',
     bracketId: 'keeper',
     round: 'keeper_main',
-    label: 'Floater 2 (Champ loser bottom)',
-    positions: [null, null], // Champ Round 1 loser drops here (routed into Splashback 2)
+    label: 'Middling Semi 1 (Champ R1 loser vs 7)',
+    // Position 0 is filled by Champ Round 1 loser; position 1 is static seed 7.
+    positions: [null, { seed: 7 }],
   },
   {
-    id: 'keeper_splashback2',
+    id: 'keeper_info2',
     bracketId: 'keeper',
     round: 'keeper_main',
-    label: 'Splash Back 2',
+    label: 'Middling info (reserved)',
     positions: [null, null],
+  },
+  {
+    id: 'keeper_m2',
+    bracketId: 'keeper',
+    round: 'keeper_main',
+    label: 'Middling Semi 2 (Champ R1 loser vs 8)',
+    // Position 0 is filled by Champ Round 1 loser; position 1 is static seed 8.
+    positions: [null, { seed: 8 }],
   },
   {
     id: 'keeper_5th_6th',
@@ -89,8 +91,8 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     round: 'keeper_misc',
     label: '5th / 6th Game',
     positions: [null, null],
-    rewardTitle: 'Keeper Bowl Champ',
-    rewardText: 'W = 5th (+1 keeper next season) | L = 6th',
+    rewardTitle: 'Middling Champ',
+    rewardText: 'W = 5th (pick 1.05) | L = 6th (pick 1.06)',
   },
   {
     id: 'keeper_7th_8th',
@@ -99,7 +101,7 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     label: '7th / 8th Game',
     positions: [null, null],
     rewardTitle: '7th / 8th',
-    rewardText: 'W = 7th | L = 8th',
+    rewardText: 'W = 7th (pick 1.07) | L = 8th (pick 1.08)',
   },
 
   //
@@ -109,46 +111,46 @@ export const BRACKET_TEMPLATE: BracketSlot[] = [
     id: 'toilet_r1_g1',
     bracketId: 'toilet',
     round: 'toilet_round_1',
-    label: 'Toilet R1 G1 (8 vs 9)',
-    positions: [{ seed: 8 }, { seed: 9 }],
+    label: 'Toilet R1 (seeding/info)',
+    positions: [null, null],
   },
   {
     id: 'toilet_r1_g2',
     bracketId: 'toilet',
     round: 'toilet_round_1',
-    label: 'Toilet R1 G2 (7 vs 10)',
-    positions: [{ seed: 7 }, { seed: 10 }],
+    label: 'Toilet R1 (seeding/info)',
+    positions: [null, null],
   },
   {
     id: 'toilet_r2_g1',
     bracketId: 'toilet',
     round: 'toilet_round_2',
-    label: 'Toilet R2 G1 (12 vs winner R1 G1)',
-    positions: [{ seed: 12 }, null],
+    label: 'Toilet Semi 1 (9 vs 12)',
+    positions: [{ seed: 9 }, { seed: 12 }],
   },
   {
     id: 'toilet_r2_g2',
     bracketId: 'toilet',
     round: 'toilet_round_2',
-    label: 'Toilet R2 G2 (11 vs winner R1 G2)',
-    positions: [{ seed: 11 }, null],
+    label: 'Toilet Semi 2 (10 vs 11)',
+    positions: [{ seed: 10 }, { seed: 11 }],
   },
   {
     id: 'toilet_finals',
     bracketId: 'toilet',
     round: 'toilet_finals',
-    label: 'Poop King Final',
+    label: 'Toilet Final (9th / 10th)',
     positions: [null, null],
-    rewardTitle: 'Toilet King',
-    rewardText: 'W = 12th (1.01 + $50 FAAB 🚽👑 ) | L = 11th',
+    rewardTitle: 'Toilet Final',
+    rewardText: 'W = 9th (15 lottery tickets for 1.01–1.04) | L = 10th (8 lottery tickets)',
   },
   {
     id: 'toilet_9th_10th',
     bracketId: 'toilet',
     round: 'toilet_misc',
-    label: '9th / 10th Game',
+    label: '11th / 12th Game',
     positions: [null, null],
-    rewardTitle: 'Poop King',
-    rewardText: 'W = 10th | L = 9th (The Real 💩🫅)',
+    rewardTitle: 'Toilet Consolation',
+    rewardText: 'W = 11th (5 lottery tickets) | L = 12th (3 lottery tickets)',
   },
 ];

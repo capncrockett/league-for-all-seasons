@@ -30,9 +30,9 @@ const RESOLUTION_ORDER: BracketSlotId[] = [
   'toilet_r2_g2',
   'toilet_finals',
   'toilet_9th_10th',
-  // Keeper
-  'keeper_splashback1',
-  'keeper_splashback2',
+  // Middling
+  'keeper_m1',
+  'keeper_m2',
   'keeper_5th_6th',
   'keeper_7th_8th',
 ];

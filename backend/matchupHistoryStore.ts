@@ -1,7 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import type { MatchupHistory, StoredMatchup } from '../frontend/src/data/matchupHistoryTypes';
-import { normalizeTeamName } from '../frontend/src/data/matchupHistory';
+import type { MatchupHistory, StoredMatchup } from '../frontend/src/data/matchupHistoryTypes.ts';
+
+// Local copy to avoid importing frontend module that statically loads JSON.
+const normalizeTeamName = (name: string): string => name.replace(/’/g, "'").toLowerCase();
 
 export type MatchupHistoryStore = {
   kind: 'json' | 'sqlite';

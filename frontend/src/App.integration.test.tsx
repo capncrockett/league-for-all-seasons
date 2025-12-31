@@ -25,6 +25,6 @@ describe('App routing and navigation', () => {
 
     renderWithRouter(<App />, { route: '/' });
 
-    expect(await screen.findByText(/KB Playoffs/i)).toBeInTheDocument();
+    expect(await screen.findByText(/LFAS Playoffs/i)).toBeInTheDocument();
   });
 });

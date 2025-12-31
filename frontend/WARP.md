@@ -4,7 +4,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 ## Project Overview
 
-Playoff bracket visualization UI for a Sleeper fantasy football keeper league. The app visualizes three interrelated brackets (Champ Bowl, Keeper Bowl, Toilet Bowl) with custom routing rules where losers from Champ Bowl flow into Keeper Bowl, and winners from Toilet Bowl feed into Keeper Bowl.
+Playoff bracket visualization UI for a Sleeper fantasy football dynasty league. The app visualizes three interrelated brackets (Championship, Dynasty, and Toilet brackets) with custom routing rules where losers from the Championship bracket flow into the Dynasty bracket, and winners from the Toilet bracket feed into the Dynasty bracket.
 
 **Current State:** Fully functional React SPA with both "If Today" preview mode and Live playoffs mode. Features responsive design with mobile-optimized layouts. Direct calls to Sleeper public APIs. Backend proxy may be added later (caching/rate-limiting).
 
@@ -121,7 +121,7 @@ The bracket system is **data-driven and immutable**. Understanding this is key t
 
 - `bracket/types.ts` - Type definitions for slots, routing rules, team references
 - `bracket/template.ts` - `BRACKET_TEMPLATE`: declarative structure of all 15 playoff slots across 3 brackets
-- `bracket/routingRules.ts` - `ROUTING_RULES`: defines winner/loser movement between slots (e.g., Champ R1 loser -> Keeper Floater)
+- `bracket/routingRules.ts` - `ROUTING_RULES`: defines winner/loser movement between slots (e.g., Champ R1 loser -> Middling Bowl semi vs seed 7/8)
 - `bracket/seedAssignment.ts` - `assignSeedsToBracketSlots()`: places teams into initial bracket positions
 - `bracket/state.ts` - `applyGameOutcomesToBracket()`: immutable routing engine that applies game results
 
@@ -138,8 +138,8 @@ The bracket system is **data-driven and immutable**. Understanding this is key t
 #### Bracket Structure
 
 - **Champ Bowl**: Seeds 1-6, traditional bracket with R1 -> R2 -> Finals + 3rd place
-- **Keeper Bowl**: Fed by Champ Bowl losers and Toilet Bowl winners. Contains Floater/Splashback games leading to 5th-8th place
-- **Toilet Bowl**: Seeds 7-12, bottom bracket with R1 -> R2 -> Poop King final + placement games
+- **Middling Bowl**: Fed by Champ Bowl Round 1 losers plus seeds 7 and 8. Semis in Round 2 lead to 5th/6th and 7th/8th placement games (mapping directly to picks 1.05–1.08).
+- **Toilet Bowl**: Seeds 9-12, four-team bracket starting in Round 2. Finals and consolation determine 9th–12th place and lottery ticket weights for picks 1.01–1.04.
 
 ### Data Flow
 
@@ -290,6 +290,16 @@ npm run lint
 - E2E tests: Navigation, route content, mobile viewports, theme toggle
 
 See `TESTING.md` in the root directory for detailed testing strategy.
+
+## Deployments (Vercel)
+
+- Frontend is deployed via Vercel project `league-for-all-seasons` (linked from the `frontend/` directory using `vercel link`).
+- Vercel auto-detects this app as a **Vite** project:
+  - Build command: `vite build` (equivalent to `npm run build`).
+  - Output directory: `dist`.
+- Typical workflow:
+  - Pushes to long-lived branches (e.g. `main`, `release/*`) trigger branch deployments.
+  - PRs from short-lived branches (e.g. `chore/vercel-pr-test`) into `main` should produce Vercel Preview deployments.
 
 ## Important Notes
 

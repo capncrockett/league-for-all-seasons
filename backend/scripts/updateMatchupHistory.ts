@@ -1,24 +1,29 @@
 import {
+  getLeague,
   getLeagueMatchupsForWeek,
   getLeagueRosters,
   getLeagueUsers,
   type SleeperMatchup,
   type SleeperRoster,
   type SleeperUser,
-} from '../../frontend/src/api/sleeper';
+} from '../../frontend/src/api/sleeper.ts';
 import {
   getMatchupStore,
   type MatchupHistoryStore,
   type StoreConfig,
-} from '../matchupHistoryStore';
+} from '../matchupHistoryStore.ts';
 import type { StoredMatchup } from '../../frontend/src/data/matchupHistoryTypes';
 
 const DEFAULT_LEAGUE_ID = '1225292474453336064';
+
+type CliMode = 'explicit' | 'regular' | 'playoffs';
 
 type CliOptions = {
   weeks: number[];
   leagueId: string;
   markFinished: boolean;
+  mode: CliMode;
+  allSeasons: boolean;
 };
 
 const round = (value: number): number => Number(value.toFixed(2));
@@ -27,6 +32,8 @@ function parseArgs(): CliOptions {
   let weeks: number[] = [];
   let leagueId = DEFAULT_LEAGUE_ID;
   let markFinished = true;
+  let mode: CliMode = 'explicit';
+  let allSeasons = false;
 
   process.argv.slice(2).forEach((arg) => {
     if (arg.startsWith('--week=')) {
@@ -53,19 +60,27 @@ function parseArgs(): CliOptions {
       markFinished = false;
     } else if (arg.startsWith('--league=')) {
       leagueId = arg.split('=')[1];
+    } else if (arg === '--playoffs-only') {
+      mode = 'playoffs';
+    } else if (arg === '--regular-season-only' || arg === '--regular-only') {
+      mode = 'regular';
+    } else if (arg === '--all-seasons') {
+      allSeasons = true;
     }
   });
 
   const uniqueWeeks = Array.from(new Set(weeks)).filter((week) => week > 0);
   uniqueWeeks.sort((a, b) => a - b);
 
-  if (uniqueWeeks.length === 0 || uniqueWeeks.some((week) => Number.isNaN(week))) {
-    throw new Error(
-      'Pass target weeks with --week={number}, --weeks=1,2,3, or --range=start-end',
-    );
+  if (mode === 'explicit' && !allSeasons) {
+    if (uniqueWeeks.length === 0 || uniqueWeeks.some((week) => Number.isNaN(week))) {
+      throw new Error(
+        'Pass target weeks with --week={number}, --weeks=1,2,3, --range=start-end, or use --playoffs-only/--regular-season-only',
+      );
+    }
   }
 
-  return { weeks: uniqueWeeks, leagueId, markFinished };
+  return { weeks: uniqueWeeks, leagueId, markFinished, mode, allSeasons };
 }
 
 function rosterIdToTeamName(users: SleeperUser[], rosters: SleeperRoster[]): Map<number, string> {
@@ -97,6 +112,8 @@ function buildMatchups(
   matchups: SleeperMatchup[],
   nameMap: Map<number, string>,
   finished: boolean,
+  leagueId: string,
+  season: number | null,
 ): StoredMatchup[] {
   const groups = new Map<number, SleeperMatchup[]>();
   matchups.forEach((matchup) => {
@@ -109,10 +126,9 @@ function buildMatchups(
 
   for (const [matchupId, games] of groups.entries()) {
     if (games.length !== 2) {
+      const idLabel = matchupId != null ? String(matchupId) : 'unknown';
       console.warn(
-        `Skipping matchup ${matchupId.toString()} (expected 2 rosters, found ${String(
-          games.length,
-        )})`,
+        `Skipping matchup ${idLabel} (expected 2 rosters, found ${String(games.length)})`,
       );
       continue;
     }
@@ -124,6 +140,8 @@ function buildMatchups(
     const teamB = resolveTeamName(nameMap, b.roster_id);
 
     entries.push({
+      leagueId,
+      season: season ?? undefined,
       week,
       team: teamA,
       opponent: teamB,
@@ -133,6 +151,8 @@ function buildMatchups(
       finished,
     });
     entries.push({
+      leagueId,
+      season: season ?? undefined,
       week,
       team: teamB,
       opponent: teamA,
@@ -146,26 +166,61 @@ function buildMatchups(
   return entries;
 }
 
-async function main(storeConfig: StoreConfig = {}) {
-  const options = parseArgs();
-  console.log(`Fetching Sleeper matchups for week(s): ${options.weeks.join(', ')}...`);
-
-  const store: MatchupHistoryStore = await getMatchupStore(storeConfig);
-  console.log(`Using matchup store: ${store.describe()}`);
-
-  const [users, rosters] = await Promise.all([
-    getLeagueUsers(options.leagueId),
-    getLeagueRosters(options.leagueId),
+async function fetchSeasonForLeague(
+  store: MatchupHistoryStore,
+  baseOptions: CliOptions,
+  leagueId: string,
+): Promise<{ written: number; weeks: number[] }> {
+  const [league, users, rosters] = await Promise.all([
+    getLeague(leagueId),
+    getLeagueUsers(leagueId),
+    getLeagueRosters(leagueId),
   ]);
 
+  const seasonNumber =
+    typeof league.season === 'string' ? Number.parseInt(league.season, 10) : league.season ?? null;
+
   const nameMap = rosterIdToTeamName(users, rosters);
+
+  // Determine target weeks. If none were passed explicitly, derive them from the league
+  // settings based on the requested mode.
+  let targetWeeks = baseOptions.weeks;
+  if (targetWeeks.length === 0) {
+    const playoffStartRaw = (league.settings as { playoff_week_start?: unknown }).playoff_week_start;
+    const playoffStart =
+      typeof playoffStartRaw === 'number' && playoffStartRaw > 0 ? playoffStartRaw : 15;
+
+    if (baseOptions.mode === 'regular') {
+      const end = Math.max(1, playoffStart - 1);
+      targetWeeks = Array.from({ length: end }, (_v, idx) => idx + 1);
+    } else if (baseOptions.mode === 'playoffs') {
+      const candidates = [playoffStart, playoffStart + 1, playoffStart + 2];
+      targetWeeks = candidates.filter((w) => Number.isFinite(w) && w > 0 && w <= 18);
+    } else {
+      // Fallback: all NFL weeks 1–18
+      targetWeeks = Array.from({ length: 18 }, (_v, idx) => idx + 1);
+    }
+  }
+
+  console.log(
+    `Fetching Sleeper matchups for league ${leagueId} (season ${
+      seasonNumber ?? 'unknown'
+    }) week(s): ${targetWeeks.join(', ')}...`,
+  );
 
   let totalWritten = 0;
   const touchedWeeks = new Set<number>();
 
-  for (const week of options.weeks) {
-    const matchups = await getLeagueMatchupsForWeek(options.leagueId, week);
-    const entries = buildMatchups(week, matchups, nameMap, options.markFinished);
+  for (const week of targetWeeks) {
+    const matchups = await getLeagueMatchupsForWeek(leagueId, week);
+    const entries = buildMatchups(
+      week,
+      matchups,
+      nameMap,
+      baseOptions.markFinished,
+      leagueId,
+      seasonNumber,
+    );
     if (entries.length === 0) {
       console.warn(`No matchup entries created for week ${week.toString()}; skipping write.`);
       continue;
@@ -181,11 +236,53 @@ async function main(storeConfig: StoreConfig = {}) {
     console.log(`Store now covers weeks: ${weeks.join(', ')}`);
   }
 
-  if (touchedWeeks.size > 0) {
+  const touchedWeekList = Array.from(touchedWeeks).sort((a, b) => a - b);
+  if (touchedWeekList.length > 0) {
     console.log(
-      `Completed update for weeks [${Array.from(touchedWeeks).sort((a, b) => a - b).join(', ')}]; total rows written: ${totalWritten.toString()}`,
+      `Completed update for league ${leagueId} (season ${
+        seasonNumber ?? 'unknown'
+      }) weeks [${touchedWeekList.join(', ')}]; total rows written: ${totalWritten.toString()}`,
     );
   }
+
+  return { written: totalWritten, weeks: touchedWeekList };
+}
+
+async function main(storeConfig: StoreConfig = {}) {
+  const options = parseArgs();
+
+  const store: MatchupHistoryStore = await getMatchupStore(storeConfig);
+  console.log(`Using matchup store: ${store.describe()}`);
+
+  if (options.allSeasons) {
+    // Walk the previous_league_id chain backward to fetch all historical seasons.
+    const visitedLeagueIds = new Set<string>();
+    let currentLeagueId: string | undefined = options.leagueId;
+    let depth = 0;
+    let grandTotal = 0;
+
+    while (currentLeagueId && !visitedLeagueIds.has(currentLeagueId) && depth < 32) {
+      visitedLeagueIds.add(currentLeagueId);
+      depth += 1;
+
+      const { written, weeks } = await fetchSeasonForLeague(store, options, currentLeagueId);
+      grandTotal += written;
+
+      const league = await getLeague(currentLeagueId);
+      const prevId = league.previous_league_id;
+      if (!prevId) break;
+      currentLeagueId = prevId;
+      console.log(`Discovered previous league id ${prevId}; continuing traversal...`);
+    }
+
+    console.log(
+      `All-seasons update complete. Visited ${visitedLeagueIds.size.toString()} league ids; total rows written: ${grandTotal.toString()}`,
+    );
+    return;
+  }
+
+  // Single-league mode (default): just fetch for the provided league id.
+  await fetchSeasonForLeague(store, options, options.leagueId);
 }
 
 main().catch((err: unknown) => {

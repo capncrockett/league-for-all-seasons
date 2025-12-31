@@ -73,7 +73,7 @@ const prLabel = buildInfo.gitPullRequestId
 const deploymentLabel = buildInfo.deploymentId ? buildInfo.deploymentId.slice(0, 8) : null;
 const projectLabel = buildInfo.projectId ? buildInfo.projectId.slice(0, 8) : null;
 const buildMetaItems = [
-  { label: 'App', value: 'Keeper Bowl Playoffs - POC' },
+  { label: 'App', value: 'League For All Seasons Playoffs' },
   { label: 'Env', value: envLabel },
   { label: releaseTag ? 'Release' : 'Branch', value: releaseTag ?? buildRef },
   { label: 'SHA', value: shortSha },
@@ -94,8 +94,8 @@ export default function App() {
       <header className="navbar bg-base-100 shadow-md">
         <div className="navbar-start">
           <span className="btn btn-ghost normal-case text-sm sm:text-xl font-bold">
-            <span className="hidden sm:inline">Keeper Bowl Playoffs</span>
-            <span className="sm:hidden">KB Playoffs</span>
+            <span className="hidden sm:inline">League For All Seasons Playoffs</span>
+            <span className="sm:hidden">LFAS Playoffs</span>
           </span>
         </div>
         <div className="navbar-center">

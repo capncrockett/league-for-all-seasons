@@ -6,7 +6,8 @@ import { defineConfig, devices } from '@playwright/test';
 dotenv.config({ path: path.resolve(process.cwd(), '..', '.env') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
-const baseURL = process.env.E2E_BASE_URL ?? 'https://keeper-bowl-playoffs-staging.vercel.app';
+const baseURL = process.env.E2E_BASE_URL ?? 'https://league-for-all-seasons-staging.vercel.app';
+const automationBypassSecret = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -22,6 +23,12 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     actionTimeout: 10_000,
+    extraHTTPHeaders: automationBypassSecret
+      ? {
+          'x-vercel-protection-bypass': automationBypassSecret,
+          'x-vercel-set-bypass-cookie': 'samesitenone',
+        }
+      : undefined,
   },
   projects: [
     {

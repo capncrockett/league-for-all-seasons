@@ -4,7 +4,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 
 ## Project Overview
 
-Monorepo for the "Keeper Bowl Playoffs" Sleeper keeper-league playoff visualization.
+Monorepo for the "League For All Seasons" Sleeper dynasty-league playoff visualization.
 
 - **frontend/** – React + Vite SPA that renders the playoff brackets, standings, and matchup views.
 - **backend/** – Node/TypeScript utilities for matchup history caching and data management used by the frontend.

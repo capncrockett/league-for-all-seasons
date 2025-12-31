@@ -54,8 +54,8 @@ describe('BracketTile', () => {
     render(<BracketTile slot={slot} teamsById={teamsById} highlightTeamId={null} mode="reward" />);
 
     expect(screen.getByText(finalsTemplate.rewardTitle)).toBeInTheDocument();
-    expect(screen.getByText(/1st \( BELT \+ 👑 \+ 💰\)/)).toBeInTheDocument();
-    expect(screen.getByText(/2nd \(2x buy-in\)/)).toBeInTheDocument();
+    expect(screen.getByText(/1st \(title \+ top payout, pick 1.12\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/2nd \(payout, pick 1.11\)/i)).toBeInTheDocument();
   });
 
   it('does not fall back to season points when currentPoints is missing', () => {

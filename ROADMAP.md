@@ -1,4 +1,4 @@
-# Keeper Bowl Playoffs — Roadmap (Active)
+# League For All Seasons Playoffs — Roadmap (Active)
 
 Completed phases 0–6 removed for brevity; reopen if you need historical notes.
 
@@ -6,7 +6,7 @@ Completed phases 0–6 removed for brevity; reopen if you need historical notes.
 
 ## Phase 3 — If‑Today Bracket View (Leftovers)
 
-- [ ] Add tiny flow labels (text only): "Rimmers ->", "Flushed ->", "Floaters", "Splashbacks".
+- [ ] Add tiny flow labels (text only): "Rimmers ->", "Flushed ->".
 - Connectors (paused):
   - [ ] Re‑enable connectors on Champ only.
   - [ ] Switch from raw `<line>` to elbow/bracket paths.
