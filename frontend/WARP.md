@@ -121,7 +121,7 @@ The bracket system is **data-driven and immutable**. Understanding this is key t
 
 - `bracket/types.ts` - Type definitions for slots, routing rules, team references
 - `bracket/template.ts` - `BRACKET_TEMPLATE`: declarative structure of all 15 playoff slots across 3 brackets
-- `bracket/routingRules.ts` - `ROUTING_RULES`: defines winner/loser movement between slots (e.g., Champ R1 loser -> Keeper Floater)
+- `bracket/routingRules.ts` - `ROUTING_RULES`: defines winner/loser movement between slots (e.g., Champ R1 loser -> Middling Bowl semi vs seed 7/8)
 - `bracket/seedAssignment.ts` - `assignSeedsToBracketSlots()`: places teams into initial bracket positions
 - `bracket/state.ts` - `applyGameOutcomesToBracket()`: immutable routing engine that applies game results
 
@@ -138,8 +138,8 @@ The bracket system is **data-driven and immutable**. Understanding this is key t
 #### Bracket Structure
 
 - **Champ Bowl**: Seeds 1-6, traditional bracket with R1 -> R2 -> Finals + 3rd place
-- **Keeper Bowl**: Fed by Champ Bowl losers and Toilet Bowl winners. Contains Floater/Splashback games leading to 5th-8th place
-- **Toilet Bowl**: Seeds 7-12, bottom bracket with R1 -> R2 -> Poop King final + placement games
+- **Middling Bowl**: Fed by Champ Bowl Round 1 losers plus seeds 7 and 8. Semis in Round 2 lead to 5th/6th and 7th/8th placement games (mapping directly to picks 1.05–1.08).
+- **Toilet Bowl**: Seeds 9-12, four-team bracket starting in Round 2. Finals and consolation determine 9th–12th place and lottery ticket weights for picks 1.01–1.04.
 
 ### Data Flow
 

@@ -37,18 +37,24 @@ npm run dev
 - Champ Bowl
 
   - Seeds 1 and 2 get byes into Round 2.
-  - Round 1: 4 vs 5 (top), and 3 vs 6 (bottom). Losers drop into the Keeper Bowl as Floaters.
+  - Round 1: 4 vs 5 (top), and 3 vs 6 (bottom). Winners stay in Champ; losers drop into the Middling Bowl semifinals.
   - Round 2: 1 plays winner of 4/5; 2 plays winner of 3/6.
-  - Finals: Round 2 winners play for 1st/2nd; Round 2 losers play to determine 3rd/4th.
+  - Finals: Round 2 winners play for 1st/2nd; Round 2 losers play to determine 3rd/4th. Champ finishers draft in reverse order (1.12–1.09).
 
-- Keeper Bowl
+- Middling Bowl
 
-  - Floaters come from the Champ Round 2 losers (top and bottom sides).
-  - Splashbacks come from Toilet Round 1 winners: winner of 8/9 feeds Splash Back 1; winner of 7/10 feeds Splash Back 2.
-  - Splashbacks winners play for 5th/6th; Splashbacks losers play for 7th/8th.
+  - Round 2: two semifinals.
+    - Semi 1: Champ R1 loser (3 vs 6) vs Seed 7.
+    - Semi 2: Champ R1 loser (4 vs 5) vs Seed 8.
+  - Round 3:
+    - Winners play for 5th/6th (picks 1.05 and 1.06).
+    - Losers play for 7th/8th (picks 1.07 and 1.08).
 
-- Toilet Bowl
-  - Seeds 12 and 11 punished with byes into Round 2.
-  - Round 1: 8 vs 9 (top), 7 vs 10 (bottom). Winners jump up into the Keeper Bowl as Splashback.
-  - Round 2: 12 plays loser of 8/9; 11 plays loser of 7/10.
-  - Finals: Round 2 winners play for 12th (Toilet King gets 1.01)/11th; Round 2 losers play to determine 10th/9th (Poop King).
+- Toilet Bowl (lottery bracket)
+  - Seeds 9–12 form a four-team bracket.
+  - Round 2: semifinals.
+    - Semi 1: 9 vs 12.
+    - Semi 2: 10 vs 11.
+  - Round 3:
+    - Winners play for 9th/10th and earn 15 and 8 lottery tickets respectively for the 1.01–1.04 draft picks.
+    - Losers play for 11th/12th and earn 5 and 3 lottery tickets respectively.

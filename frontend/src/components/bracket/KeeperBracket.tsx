@@ -26,30 +26,20 @@ const KEEPER_COLUMNS: BracketLayoutColumn[] = [
   {
     title: 'Round 1',
     subtitle: 'Seeding',
-    // Info cards explaining who drops into Keeper Round 2.
+    // Info cards explaining how Middling Bowl Round 2 is seeded.
     itemsContainerClassName: 'justify-between',
     items: [
       {
         id: 'keeper_round1_matchup1',
         slotId: null,
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
-        ghostContent: (
-          <>
-            {renderKeeperInfoRow('Floater 1')}
-            {renderKeeperInfoRow('Splashback 1')}
-          </>
-        ),
+        ghostContent: <>{renderKeeperInfoRow('Seeds: Middling Semi 1 (Champ L 3/6 vs 7) →')}</>,
       },
       {
         id: 'keeper_round1_matchup2',
         slotId: null,
         ghostContentClassName: 'flex h-full w-full flex-col divide-y divide-base-300',
-        ghostContent: (
-          <>
-            {renderKeeperInfoRow('Floater 2')}
-            {renderKeeperInfoRow('Splashback 2')}
-          </>
-        ),
+        ghostContent: <>{renderKeeperInfoRow('Seeds: Middling Semi 2 (Champ L 4/5 vs 8) →')}</>,
       },
       {
         id: 'keeper_round1_spacer',
@@ -62,8 +52,8 @@ const KEEPER_COLUMNS: BracketLayoutColumn[] = [
     subtitle: 'Week 16',
     itemsContainerClassName: 'justify-between',
     items: [
-      { id: 'keeper_splashback1', slotId: 'keeper_splashback1' },
-      { id: 'keeper_splashback2', slotId: 'keeper_splashback2' },
+      { id: 'keeper_m1', slotId: 'keeper_m1' },
+      { id: 'keeper_m2', slotId: 'keeper_m2' },
       {
         id: 'keeper_round2_spacer',
         slotId: null,

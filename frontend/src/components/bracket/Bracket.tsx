@@ -31,9 +31,9 @@ export const Bracket: FC<BracketProps> = ({
 
   return (
     <div className="space-y-6 md:space-y-12">
-      {/* Championship bracket */}
+      {/* Champ Bowl bracket */}
       <div>
-        <h2 className="text-sm md:text-lg font-bold mb-3 md:mb-4 text-base-content">Championship Bracket</h2>
+        <h2 className="text-sm md:text-lg font-bold mb-3 md:mb-4 text-base-content">Champ Bowl</h2>
         <ChampBracket
           slots={champSlots}
           teamsById={teamsById}
@@ -43,9 +43,9 @@ export const Bracket: FC<BracketProps> = ({
         />
       </div>
 
-      {/* Dynasty bracket (middle tier) */}
+      {/* Middling Bowl bracket (middle tier) */}
       <div className="mt-20">
-        <h2 className="text-sm md:text-lg font-bold mb-3 md:mb-4 text-base-content">Dynasty Bracket</h2>
+        <h2 className="text-sm md:text-lg font-bold mb-3 md:mb-4 text-base-content">Middling Bowl</h2>
         <KeeperBracket
           slots={keeperSlots}
           teamsById={teamsById}
